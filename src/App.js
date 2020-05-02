@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+    console.log('App() 호출' )
     return (
         <div className="container">
             <h2>React World!</h2>
@@ -46,13 +47,38 @@ function FuncComp(props) {
         </div>
     );
 }
-
+var classStyle = 'color:red';
 class ClassComp extends React.Component {
     state = {
         number: this.props.initNumber,
         date: (new Date()).toString()
     }
+    componentWillMount() {
+        /**
+         * render 되기 전에 실행 메서드
+         */
+        console.log('%cclass => componentWillMount', classStyle);
+    }
+    componentDidMount() {
+        /**
+         * 화면이 그려진 후에 처리해야 될 일 넣기
+         * 추가적인 dom 처리
+         * 네트워크에서 다운로드 받아서 후처리 넣기 등등
+         */
+        console.log('%cclass => componentDidMount', classStyle);
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('%cclass => shouldComponentUpdate', classStyle);
+        return true;
+    }
+    componentWillUpdate(nextProps, nextState) {
+        console.log('%cclass => componentWillUpdate', classStyle);
+    }
+    componentDidUpdate(nextProps, nextState) {
+        console.log('%cclass => componentWillUpdate', classStyle);
+    }
     render() {
+        console.log('%cclass => render', classStyle)
         console.log('ClassComp')
         return (
             <div className="container">
