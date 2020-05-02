@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
@@ -11,8 +11,10 @@ function App() {
         </div>
     );
 }
-
+const funcStyle = 'color:blue';
+let funcId = 0;
 function FuncComp(props) {
+    console.log('FuncComp')
     /**
      * hook 사용
      */
@@ -24,7 +26,26 @@ function FuncComp(props) {
     let _date = dateState[0];
     let setDate = dateState[1];*/
     var [_date, setDate] = useState((new Date()).toString());
-    console.log('FuncComp')
+    useEffect(function() {
+        /**
+         * useEffect는
+         * componentDidMount && componentDidUpdate 와 같다
+         */
+        console.log('%cfunc => useEffect (componentDidMount && componentDidUpdate) A > '+(++funcId), funcStyle);
+        // 타이틀 바꾸기
+        document.title = `${number*1}: ${_date}`
+    });
+    useEffect(function() {
+        /**
+         * useEffect는
+         * componentDidMount && componentDidUpdate 와 같다
+         * 여러개 설치 가능
+         */
+        console.log('%cfunc => useEffect 여러개 설치 가능 B > '+(++funcId), funcStyle);
+        // 타이틀 바꾸기
+        document.title = `${number*1}: ${_date}`
+    })
+    console.log('%cfunc => render'+(++funcId), funcStyle);
     return (
         <div className="container">
             <h2>Function Style component</h2>
@@ -47,7 +68,7 @@ function FuncComp(props) {
         </div>
     );
 }
-var classStyle = 'color:red';
+const classStyle = 'color:red';
 class ClassComp extends React.Component {
     state = {
         number: this.props.initNumber,
