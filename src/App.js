@@ -2,12 +2,20 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-    console.log('App() 호출' )
+    console.log('App() 호출');
+    let [funcShow, setFuncShow] = useState(true);
+    let [classShow, setClassShow] = useState(true);
     return (
         <div className="container">
             <h2>React World!</h2>
-            <FuncComp initNumber={100}/>
-            <ClassComp initNumber={100}/>
+            <input type="button" value="funcComp" onClick={function () {
+                funcShow ? setFuncShow(false) : setFuncShow(true);
+            }}/>
+            <input type="button" value="classComp"  onClick={function () {
+                classShow ? setClassShow(false) : setClassShow(true);
+            }}/>
+            {funcShow ? <FuncComp initNumber={100}/> : null}
+            {classShow ? <ClassComp initNumber={100}/> : null}
         </div>
     );
 }
@@ -97,6 +105,12 @@ class ClassComp extends React.Component {
          * render 되기 전에 실행 메서드
          */
         console.log('%cclass => componentWillMount', classStyle);
+    }
+    componentWillUnmount() {
+        /**
+         * render 되기 전에 실행 메서드
+         */
+        console.log('%cclass => componentWillUnmount', classStyle);
     }
     componentDidMount() {
         /**
