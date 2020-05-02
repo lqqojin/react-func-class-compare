@@ -31,20 +31,24 @@ function FuncComp(props) {
          * useEffect는
          * componentDidMount && componentDidUpdate 와 같다
          */
-        console.log('%cfunc => useEffect (componentDidMount && componentDidUpdate) A > '+(++funcId), funcStyle);
+        console.log('%cfunc => useEffect (componentDidMount && componentDidUpdate) > '+(++funcId), funcStyle);
         // 타이틀 바꾸기
-        document.title = `${number*1}: ${_date}`
+        document.title = `${number*1}: ${_date}`;
+        return function cleanup() {
+            // 정리할때 호출
+            console.log('%cfunc => useEffect return (componentDidMount && componentDidUpdate) > '+(++funcId), funcStyle);
+        }
     });
-    useEffect(function() {
-        /**
-         * useEffect는
-         * componentDidMount && componentDidUpdate 와 같다
-         * 여러개 설치 가능
-         */
-        console.log('%cfunc => useEffect 여러개 설치 가능 B > '+(++funcId), funcStyle);
-        // 타이틀 바꾸기
-        document.title = `${number*1}: ${_date}`
-    })
+    // useEffect(function() {
+    //     /**
+    //      * useEffect는
+    //      * componentDidMount && componentDidUpdate 와 같다
+    //      * 여러개 설치 가능
+    //      */
+    //     console.log('%cfunc => useEffect 여러개 설치 가능 B > '+(++funcId), funcStyle);
+    //     // 타이틀 바꾸기
+    //     document.title = `${number*1}: ${_date}`
+    // })
     console.log('%cfunc => render'+(++funcId), funcStyle);
     return (
         <div className="container">
