@@ -31,6 +31,20 @@ function FuncComp(props) {
          * useEffect는
          * componentDidMount && componentDidUpdate 와 같다
          */
+        console.log('%cfunc => useEffect number (componentDidMount) > '+(++funcId), funcStyle);
+        // 타이틀 바꾸기
+        document.title = number;
+        return function cleanup() {
+            // return 값은 정리 작업 할 때 사용
+            console.log('%cfunc => useEffect number return (componentWillUnMount) > '+(++funcId), funcStyle);
+        }
+        // 인자로 [] 넘기면 최초 1회 실행하는 componentDidMount와 같다
+    }, []);
+    useEffect(function() {
+        /**
+         * useEffect는
+         * componentDidMount && componentDidUpdate 와 같다
+         */
         console.log('%cfunc => useEffect number (componentDidMount && componentDidUpdate) > '+(++funcId), funcStyle);
         // 타이틀 바꾸기
         document.title = number;
